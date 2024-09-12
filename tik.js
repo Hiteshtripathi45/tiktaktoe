@@ -58,6 +58,7 @@ gameplay = (function(){
 })();
 
 const cell=Array.from (document.getElementsByClassName('cell'))
+let res=document.getElementById('res')
 cell.forEach(element => {
     element.addEventListener('click',()=>{
 
@@ -68,9 +69,21 @@ cell.forEach(element => {
         console.log(gameplay.check())
         if(gameplay.check()=='win'){
             gameplay.turn()
-            let res=document.getElementById('res')
             res.textContent=gameplay.winner()+"  "+gameplay.check()
+        }
+        else if(gameplay.check()=='it a ties'){
+            res.textContent='it a tie'
         }
         }
     }) 
 });
+
+let resset = document.querySelector('button')
+resset.addEventListener('click',()=>{
+    gameboard.reset()
+    res.textContent=' '
+    cell.forEach(element => {
+        element.textContent=''
+        
+    });
+})
