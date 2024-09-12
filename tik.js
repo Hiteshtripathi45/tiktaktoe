@@ -21,16 +21,22 @@ function players(name,mark){
 }
 
 gameplay = (function(){
-    let player1 = players('hitesh','x')
-    let player2 = players('anuj','o')
+    let player1 = players('player1','x')
+    let player2 = players('player2','o')
     let tur =player1.mark
+    let namm=player1.name
     function turn(){
         if(tur==player2.mark){
             tur=player1.mark
+            namm=player1.name
         } 
         else{
             tur=player2.mark
+            namm=player2.name
         }
+    }
+    function winner(){
+        return namm
     }
     function currenturn(){
         return tur
@@ -40,24 +46,31 @@ gameplay = (function(){
     let board = gameboard.getboard()
         for(let chan of chances){
            const [a,b,c]=chan
-           if(board[a]==board[b] && board[b]==board[c]){
+           if((board[a]==board[b] && board[b]==board[c])&& board[a]!==''){
             return 'win'
            }
-
+        }
+        if(!board.includes('')){   
+           return 'it a ties'
         }
     }
-    return {check,turn,currenturn}
+    return {check,turn,currenturn,winner}
 })();
 
 const cell=Array.from (document.getElementsByClassName('cell'))
 cell.forEach(element => {
     element.addEventListener('click',()=>{
 
-        if((gameboard.getboard()[element.id])==''){
+        if(((gameboard.getboard()[element.id])=='') && gameplay.check()==undefined){
         element.textContent=gameplay.currenturn()
         gameboard.update(element.id,gameplay.currenturn())
         gameplay.turn()
+        console.log(gameplay.check())
+        if(gameplay.check()=='win'){
+            gameplay.turn()
+            let res=document.getElementById('res')
+            res.textContent=gameplay.winner()+"  "+gameplay.check()
         }
-        
+        }
     }) 
 });
