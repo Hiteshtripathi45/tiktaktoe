@@ -8,6 +8,7 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
+    background-image: url(wall.jpg);
 }
 #board{
     align-self: center;
@@ -26,6 +27,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(51, 47, 42);
 
 }
 .part1{
@@ -34,6 +36,8 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    color: rgb(215, 231, 221);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    
 }
 .sm{
@@ -50,4 +54,7 @@ button{
     height: 50px;
     width: 100px;
     border-radius: 5px;
+    margin: 20px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(62, 63, 63);
 }
